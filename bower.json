@@ -1,0 +1,21 @@
+{
+  "name": "materializeModal",
+  "main": "materializeModal.js",
+  "authors": [
+    "saxman6989 <ohmyshoulder987@gmail.com>"
+  ],
+  "description": "A JS library for creating Materialize Modal",
+  "keywords": [
+    "materialize",
+    "modal"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
