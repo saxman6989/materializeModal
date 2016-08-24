@@ -20,7 +20,7 @@
 			return id;
 		}
 
-		function iterateObject(object){
+		function getKeys(object){
 			var obj = object.buttons;
 
 			var array_key = new Array;
@@ -32,7 +32,7 @@
 			return array_key;
 		}
 
-		function generateButtons(options, array){
+		function getButtons(options, array){
 			var array_buttons = new String;
 
 			$.each(array, function(index, key){
@@ -53,6 +53,8 @@
 				title:'',
 				body:'',
 				value:'',
+				fixed:false,
+				bottom_sheet:false,
 				buttons:{},
 				footer:'<a class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>',
 				id:unique_id
@@ -83,9 +85,9 @@
 											'<a class="modal-action modal-close waves-effect waves-red btn-flat cancel">Cancel</a>';
 					break;
 
-				case 'custom':
-					var array_key = iterateObject(modal_options);
-					var footer_buttons = generateButtons(modal_options, array_key);
+				case 'customize':
+					var array_key = getKeys(modal_options);
+					var footer_buttons = getButtons(modal_options, array_key);
 					modal_options.footer = footer_buttons;
 					break;
 			}
@@ -93,7 +95,7 @@
 			return modal_options;
 		}
 
-		function optionsToModal(options){
+		function modalize(options){
 			var title = options.title,
 				body = options.body,
 				footer = options.footer,
@@ -112,13 +114,21 @@
 			structure.find('.modal-content').html(content);
 			structure.find('.modal-footer').html(footer);
 
+			if(options.fixed){
+				structure.addClass('modal-fixed-footer');
+			}
+
+			if(options.bottom_sheet){
+				structure.addClass('bottom-sheet');
+			}
+
 			return $('body').append(structure);
 
 		}
 
 		_exports.alert = function(options) {
 			var o = defineOptions(options, 'alert');
-			var modal = optionsToModal(o);
+			var modal = modalize(o);
 			var element = '#' + o.id;
 
 			return $(element).openModal();
@@ -126,7 +136,7 @@
 
 		_exports.confirm = function(options, callback) {
 			var o = defineOptions(options, 'confirm');
-			var modal = optionsToModal(o);
+			var modal = modalize(o);
 			var element = '#' + o.id;
 
 			$(element).openModal();
@@ -142,7 +152,7 @@
 
 		_exports.prompt = function(options, callback) {
 			var o = defineOptions(options, 'prompt');
-			var modal = optionsToModal(o);
+			var modal = modalize(o);
 			var element = '#' + o.id;
 
 			$(element).openModal();
@@ -159,10 +169,10 @@
 			});
 		}
 
-		_exports.custom = function(options) {
-			var o = defineOptions(options, 'custom');
-			var array_key = iterateObject(o);
-			var modal = optionsToModal(o);
+		_exports.customize = function(options) {
+			var o = defineOptions(options, 'customize');
+			var array_key = getKeys(o);
+			var modal = modalize(o);
 			var element = '#' + o.id;
 
 			$(element).openModal();
@@ -174,6 +184,10 @@
 					o.buttons[key].callback();
 				});
 			});
+		}
+
+		_exports.closeAll = function() {
+			$('.modal').closeModal();
 		}
 
 		return _exports;

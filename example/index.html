@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<title>Examples</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -9,8 +10,10 @@
 	<body>
 		<script>
 			var options = {
-				title:'asfd',
-				body:'asdf',
+				title:'Custom',
+				body:'options',
+				fixed:true,
+				bottom_sheet:true,
 				buttons: {
 					ok:{
 						design:'<a class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>',
@@ -21,7 +24,7 @@
 					cancel:{
 						design:'<a class="modal-action modal-close waves-effect waves-red btn-flat">cancel</a>',
 						callback:function(){
-							alert('cancel');
+							materializeModal.closeAll()
 						}
 					},
 					ignore:{
@@ -49,7 +52,7 @@
 				<a class="waves-effect waves-light btn" onclick="materializeModal.alert('Alert!');">alert</a>
 				<a class="waves-effect waves-light btn" onclick="materializeModal.confirm('Confirm', function(val){alert(val)});">confirm</a>
 				<a class="waves-effect waves-light btn" onclick="materializeModal.prompt('Prompt', function(val){alert(val)});">prompt</a>
-				<a class="waves-effect waves-light btn" onclick="materializeModal.custom(options);">customized</a>
+				<a class="waves-effect waves-light btn" onclick="materializeModal.customize(options);">customized</a>
 			</div>
 		</main>
 	</body>

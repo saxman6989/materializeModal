@@ -9,8 +9,7 @@
     "materialize",
     "modal"
   ],
-  "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/saxman6989/materializeModal",
   "ignore": [
     "**/.*",
     "node_modules",
